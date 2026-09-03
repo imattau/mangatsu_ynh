@@ -1,0 +1,13 @@
+#!/bin/bash
+set -eu
+
+source /usr/share/yunohost/helpers
+
+ynh_script_progression "Restoring Mangatsu files..."
+ynh_restore "$install_dir/dist"
+chown -R www-data: "$install_dir"
+
+ynh_script_progression "Restoring NGINX configuration..."
+ynh_config_add_nginx
+
+ynh_script_progression "Restore of $app completed"

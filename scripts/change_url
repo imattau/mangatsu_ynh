@@ -1,0 +1,17 @@
+#!/bin/bash
+set -eu
+
+source /usr/share/yunohost/helpers
+source "$(dirname "$0")/_common.sh"
+
+# Unlike a typical static SPA, the install path is baked into the built JS
+# bundle (router basename, service worker scope, shareable comic URL — see
+# _common.sh), so a domain/path change needs a full rebuild against the new
+# $path, not just a regenerated NGINX vhost.
+ynh_script_progression "Rebuilding Mangatsu for the new URL..."
+build_mangatsu
+
+ynh_script_progression "Updating NGINX configuration..."
+ynh_config_change_url_nginx
+
+ynh_script_progression "URL change for $app completed"

@@ -1,0 +1,9 @@
+#!/bin/bash
+
+source /usr/share/yunohost/helpers
+
+# Only the build output is worth backing up: install/upgrade always
+# re-fetch the full source from the pinned release tarball and rebuild, so
+# the source tree, package.json, node_modules, etc. would just be dead
+# weight in the backup archive.
+ynh_backup "$install_dir/dist"

@@ -1,0 +1,7 @@
+test_format = 1.0
+
+[default]
+
+    [default.curl_tests]
+    home.path = "/"
+    home.expect_title = "Mangatsu"
